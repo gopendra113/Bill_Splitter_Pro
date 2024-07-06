@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Splitwise - Members</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .contain {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 100%; 
+      max-width: 300px; 
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar h1 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #f0d98f;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+    }
+
+    .sidebar hr {
+      border-color: #555;
+      margin: 20px 0;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .sidebar p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .a {
+      display: block;
+      padding: 10px;
+      background-color: #008CBA;
+      color: white;
+      border-radius: 25px;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .a:hover {
+      background-color: #006B8F;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 50px;
+      color: #333;
+    }
+
+    .scroll_vert2 {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      overflow: scroll;
+      max-height: 70vh;
+      margin: 20px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .scroll_vert2::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .scroll_vert2::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 4px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      font-weight: bold;
+      margin-top: auto;
+      padding: 10px;
+      text-align: center;
+    }
+
+    @media only screen and (min-width: 768px) {
+      .sidebar {
+        width: 300px;
+      }
+    }
+  </style>
+</head>
+<body background="https://img.freepik.com/free-vector/abstract-geometric-wireframe-background_52683-59421.jpg" style="background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+
+  <div class="contain">
+    <div class="sidebar">
+      <div style="background-color: #86becc; border-radius: 20px;">
+        <h1 style="font-size: 1.5em;">BILL SPLITTER <span style="color: yellow">PRO</span></h1>
+      </div>
+      <img class="logo"
+           src="https://is1-ssl.mzstatic.com/image/thumb/Purple49/v4/bf/89/b8/bf89b8dc-3bdd-3c59-3565-bc436b1c965a/source/512x512bb.jpg"
+           alt="Logo">
+      <hr>
+      <h2 style="text-align: center;">HOME PAGE</h2>
+      <p style="font-size: 14px;"> Welcome to BILL SPLITTER <span style="color: yellow">PRO</span><br>
+        You can proceed to make a new group and add members into it or select an existing group to make changes.
+        Newly created group at the end
+      </p>
+      <hr>
+      <a class="a" href="http://127.0.0.1:5000/">Home</a>
+    </div>
+    <div class="content">
+      <div class="container_2">
+        <div class="scroll_vert2">
+          <div>
+            <h2 style="color:black;font-size: 40px;text-align: center;">Group Members</h2>
+            <ul id="members">
+              {% for member in members %}
+              <li>{{ member }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div style="margin-left:100px;margin-right:100px;text-align:center;">
+            <form id="add-form" method="POST">
+              <input type="text" id="memname" name="memname">
+              <br>
+              <button type="submit" id="add-btn">ADD NEW MEMBER</button>
+            </form>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
+

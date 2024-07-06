@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        header {
+            background-color: #303F9F;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display:flex;
+            align-items:center;
+        }
+        
+        nav {
+            background-color:lightgreen;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        nav a:hover {
+            background-color: #ddd;
+        }
+        
+        #table {
+            margin-top: 50px;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #607D8B;
+            color: white;
+        }
+        .logo{
+        height:150px;
+        width:150px;
+        margin-left:20px;
+        margin-right: 70px;;
+      }
+        #transbutton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        
+        #transbutton:hover {
+            background-color: #3E8E41;
+        }
+        
+        footer{
+            background-color:gray;
+            color:black;
+            font-weight:bold;
+            margin-bottom:0;
+            position:relative;
+            bottom:0;
+            left:0;
+            margin-top:100px;
+            margin-left:0px;
+            margin-right: 0px;
+            border-radius:0px;
+            right:0;
+            z-index: 1;
+            text-align:center;
+            }
+    </style>
+</head>
+<body background="https://img.freepik.com/free-vector/abstract-geometric-wireframe-background_52683-59421.jpg" style="background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+
+
+    <header>
+        
+        <img class="logo" src="https://is1-ssl.mzstatic.com/image/thumb/Purple49/v4/bf/89/b8/bf89b8dc-3bdd-3c59-3565-bc436b1c965a/source/512x512bb.jpg">
+        <h1 style="font-size:38px;display:inline-block">BILL SPLITTER <span style="color:yellow">PRO</span></h1>
+    </header>
+
+    <nav>
+        <a href="http://127.0.0.1:5000/">Home</a>
+
+    </nav>
+
+    <h2 id="table">{{table}}</h2>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    {% for member in members %}
+                    <th>{{ member }}</th>
+                    {% endfor %}
+                    <th>Settle up</th>
+                </tr>
+            </thead>
+            {% for tuple in data %}
+            <tr>
+                {% for member in tuple %}
+                    <td>{{ member }}</td>
+                    {% endfor %}
+                <td><button id="transbutton" value="{{tuple[0]}}">Settle up</button></td>
+
+            </tr>
+            {% endfor %}
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script>
+    const buttons = document.querySelectorAll("#transbutton");
+    buttons.forEach((button) => {
+        button.onclick = function () {
+            let dummy=button.value;
+            const table = document.getElementById('table').innerHTML;
+            window.location.href="/settleup?table_key="+ dummy + "&table=" + table ;
+        }
+    });
+</script>
+</html>

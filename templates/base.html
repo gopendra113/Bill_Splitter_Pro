@@ -1,0 +1,192 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Playlist</title>
+    <link rel="stylesheet" href="/static/index.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .contain {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #f0d98f;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+        }
+
+        .sidebar hr {
+            border-color: #555;
+            margin: 20px 0;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .sidebar p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .a {
+            display: block;
+            padding: 10px;
+            background-color: #008CBA;
+            color: white;
+            border-radius: 25px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .a:hover {
+            background-color: #006B8F;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        .scroll_vert2 {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            overflow: scroll;
+            max-height: 70vh;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .scroll_vert2::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scroll_vert2::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+        }
+        /* ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    li a {
+        display: block;
+        padding: 10px;
+        background-color: #008CBA;
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    li a:hover {
+        background-color: #006B8F;
+    } */
+        @media only screen and (min-width: 768px) {
+            .sidebar {
+                width: 300px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="contain">
+    <div class="sidebar">
+        <div style="background-color: #86becc; border-radius: 20px;">
+            <h1 style="font-size: 1.5em;">BILL SPLITTER <span style="color: yellow">PRO</span></h1>
+        </div>
+        <img class="logo"
+             src="https://is1-ssl.mzstatic.com/image/thumb/Purple49/v4/bf/89/b8/bf89b8dc-3bdd-3c59-3565-bc436b1c965a/source/512x512bb.jpg"
+             alt="Logo">
+        <hr>
+        <h2 style="text-align: center;">HOME PAGE</h2>
+        <p style="font-size: 14px;"> Welcome to BILL SPLITTER <span style="color: yellow">PRO</span><br>
+            You can proceed to make a new group and add members into it or select an existing group to make changes.
+            Newly created group at the end
+        </p>
+        <hr>
+        <a class="a" href="http://127.0.0.1:5000/">Home</a>
+    </div>
+    <div class="content">
+        <div class="scroll_vert2">
+            <h1 style="color: #f0d98f; font-size: 36px; text-align: center;">Groups</h1>
+            <form id="add-form" method="POST">
+                <div>
+                    <div style="text-align: center;">
+                        <input type="text" id="groupname" name="groupname" placeholder="Enter group name">
+                        <br>
+                        <button type="submit" id="add-btn">Create new group</button>
+                    </div>
+                    <ul id="name">
+                        {% for group in name %}
+                        <li><a href="/groupsumbit?name={{ group[0] }}" style="text-decoration: none; color: black;">{{ group[0] }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>Created by Gopendra Singh, Annamalai Senthil, and Yashaswini Duggaraju</p>
+    <p>Contact us: gopendra.singh@students.iiit.ac.in | annamalai.senthil@students.iiit.ac.in | yashaswini.duggaraju@students.iiit.ac.in </p>
+    <p>Copyright &copy; 2023 My Website. All rights reserved.</p>
+</footer>
+</body>
+</html>

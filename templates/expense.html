@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Expense Tracker</title>
+	
+	<style>
+		body {
+			font-family: 'Arial', sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color:grey;
+		   
+		}
+	
+		.contain {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	
+		.sidebar {
+			width: 100%;
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+		}
+	
+		.sidebar h1 {
+			font-size: 1.5em;
+			margin-bottom: 20px;
+			color: #f0d98f;
+		}
+	
+		.logo {
+			display: block;
+			margin: 0 auto 20px;
+			height: 100px;
+			width: 100px;
+			border-radius: 50%;
+		}
+	
+		.sidebar hr {
+			border-color: #555;
+			margin: 20px 0;
+		}
+	
+		.sidebar h2 {
+			text-align: center;
+			font-size: 1.2em;
+			margin-bottom: 10px;
+		}
+	
+		.sidebar p {
+			font-size: 14px;
+			line-height: 1.5;
+		}
+	
+		.a {
+			display: block;
+			padding: 10px;
+			background-color: #008CBA;
+			color: white;
+			border-radius: 25px;
+			text-align: center;
+			text-decoration: none;
+			transition: background-color 0.3s;
+			margin-bottom: 10px;
+		}
+	
+		.a:hover {
+			background-color: #006B8F;
+		}
+	
+		.content {
+			flex: 1;
+			padding: 20px;
+		}
+	
+		h1 {
+			text-align: center;
+			font-size: 36px;
+			margin-top: 50px;
+			color: #333;
+		}
+	
+		.scroll_vert2 {
+			background-color: rgba(255, 255, 255, 0.8);
+			border-radius: 20px;
+			overflow: scroll;
+			max-height: 70vh;
+			margin: 20px;
+			padding: 20px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+	
+		.scroll_vert2::-webkit-scrollbar {
+			width: 8px;
+		}
+	
+		.scroll_vert2::-webkit-scrollbar-thumb {
+			background-color: #888;
+			border-radius: 4px;
+		}
+	
+		footer {
+			background-color: #333;
+			color: white;
+			font-weight: bold;
+			margin-top: 20px;
+			padding: 10px;
+			text-align: center;
+		}
+	
+	
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+	
+		li {
+			margin-bottom: 10px;
+		}
+	
+		li a {
+			display: block;
+			padding: 10px;
+			background-color: #008CBA;
+			color: white;
+			border-radius: 10px;
+			text-decoration: none;
+			transition: background-color 0.3s;
+		}
+	
+		li a:hover {
+			background-color: #006B8F;
+		}
+	
+		@media only screen and (min-width: 768px) {
+			.sidebar {
+				width: 300px;
+			}
+	
+			.content {
+				padding: 20px;
+			}
+		}
+	</style>
+</head>
+<body background="https://img.freepik.com/free-vector/abstract-geometric-wireframe-background_52683-59421.jpg" style="background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+
+	<div class="contain">
+		<div class="sidebar">
+            <div style="background-color: #86becc; border-radius: 20px;">
+                <h1 style="font-size: 1.5em;">BILL SPLITTER <span style="color: yellow">PRO</span></h1>
+            </div>
+            <img class="logo"
+                src="https://is1-ssl.mzstatic.com/image/thumb/Purple49/v4/bf/89/b8/bf89b8dc-3bdd-3c59-3565-bc436b1c965a/source/512x512bb.jpg"
+                alt="Logo">
+            <hr>
+            <h2 style="text-align: center;">HOME PAGE</h2>
+            <p style="font-size: 14px;"> Welcome to BILL SPLITTER <span style="color: yellow">PRO</span><br>
+                You can proceed to make a new group and add members into it or select an existing group to make changes.
+                Newly created group at the end
+            </p>
+            <hr>
+            <a class="a" href="http://127.0.0.1:5000/">Home</a>
+        </div>
+        <div class="content">
+          <div class="container_2">
+            <div class="scroll_vert2">
+	<h1 style="text-align:center;font-size:60px;color:rgb(8, 8, 8)">{{table}}</h1>
+	<div style="margin-top:100px;" class="div">
+		<form>
+			<label for="expense" class="label">Expense:</label>
+			<input type="number" id="expense" name="expense">
+			<br>
+			<br>
+			<label for="description" class="label">Description:</label>
+			<input type="text" id="description" name="description"></input>
+			<br>
+			<p id="paid"> MEMBER WHO PAID:- </p>
+            {% for member in members %}
+              <label class="members">
+                <input type="radio" style="font-size: 50px;" name="member_name" value="{{ member }}">
+                {{ member }}
+              </label><br>
+            {% endfor %}
+			
+		</form>
+	</div>
+	<ul id="mylist">
+		{% for member in members %}
+              <li>{{member}}</li>
+            {% endfor %}
+	</ul>
+	<ul id="mylist2">
+		<li>{{table}}</li>
+	</ul>
+	<button class="add" > ADD </button>
+	
+	<div id="invis"  class="div">
+		<div>
+			<form class="radio">
+				<input type="radio" id="showDiv" name="visibility" value="visible" class="radio"> Share Unequally<br>
+				<input type="radio" id="hideDiv" name="visibility" value="hidden" class="radio"> Share Equally<br>
+			</form>
+		</div>
+
+		<div class="share" id="myDiv">
+			<form>
+				{% for member in members %}
+				<label for="amount">{{ member }} : </label>
+					<input type="number" id="amount" name="amount" class="unequal" style="width:200px;"><br>
+					
+				<br>
+				{% endfor %}
+				
+			</form>
+		</div>
+		<input type="button" id="finalsumbit" value="Submit">
+	</div>
+</div>
+</div>
+  </div>
+
+</div>
+<div><footer>
+    <p>Created by Gopendra Singh and Annamalai Senthil and Yashaswini Duggaraju</p>
+    <p>Contact us: gopendra.singh@students.iiit.ac.in | annamalai.senthil@students.iiit.ac.in | yashaswini.duggaraju@students.iiit.ac.in </p>
+    <p>Copyright &copy; 2023 My Website.
+    All rights reserved.</p>
+  </footer></div>
+</body>
+<script>
+	document.getElementById('myDiv').style.display = 'none';
+	const radios = document.querySelectorAll('input[name="visibility"]');
+	radios.forEach((radio) => {
+  	radio.addEventListener('change', () => {
+    if (radio.value === 'visible') {
+      document.getElementById('myDiv').style.display = 'block';
+	  method=1;
+    } else {
+      document.getElementById('myDiv').style.display = 'none';
+    }
+  });
+});
+	let arr=[];
+	let brr=[];
+	var method=0;
+	var len=0;
+	document.getElementById('invis').style.display = 'none';
+	const rate = document.querySelector("#invis");
+	const rating = document.querySelector(".add");
+	rating.onclick = function () {
+		rate.style.display = "block";
+
+	}
+    document.getElementById('mylist').style.display = 'none';
+	document.getElementById('mylist2').style.display = 'none';
+	var mylist=document.getElementById("mylist");
+	for(var i=0;i<mylist.children.length;i++){
+		let listitem=mylist.children[i];
+		arr.push(listitem.innerHTML);
+		brr.push(0);
+		len=i+1;
+	}
+
+	var mylist=document.getElementById("mylist2");
+	var tab=mylist.children[0].innerHTML;
+	console.log(tab);
+
+	const payperson = document.querySelectorAll('input[name="member_name"]');
+	payperson.forEach((person) => {
+  	person.addEventListener('change', () => {
+	  for (var i=0;i<arr.length;i++){
+		if (person.value===arr[i]){
+			const exp=document.getElementById('expense').value;
+			brr[i]=exp;
+			console.log(brr[i]);
+		}
+	  }
+
+
+  });
+});
+   const final=document.getElementById('finalsumbit');
+   final.addEventListener('click', () => {
+	if (method===1){
+		
+	var inputs = document.getElementsByClassName("unequal");
+	for (var i = 0; i < inputs.length; i++) {
+		brr[i]=brr[i]-inputs[i].value;
+	    console.log(brr[i]);
+	}
+	}
+	else{
+		let total=document.getElementById('expense').value;
+		let avg=total/len;
+		for (var i = 0; i < len; i++) {
+		brr[i]=brr[i]-avg;
+	    console.log(brr[i]);
+	}
+
+	}
+    var desc=document.getElementById('description').value;
+	const total=document.getElementById('expense').value;
+	let obj={1:tab,2:desc,3:total,4:arr,5:brr};
+	console.log(obj);
+	fetch('/insertexpense', {
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify(obj)
+	})
+    location.reload();
+	});
+</script>
+</html>
